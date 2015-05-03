@@ -42,8 +42,8 @@ void setup()
     //vVals[i] = sqrt(2.0f / rVals[i]) - (1.0f/semimajorAxis);
     //Serial.print("completed ");Serial.print(i/250);Serial.println("%");
  }
- velocity_MAX = sqrt(2.0f / Rp) - (1.0f/semimajorAxis);
- velocity_MIN = sqrt(2.0f / Ra) - (1.0f/semimajorAxis);
+ velocity_MAX = sqrt((2.0f / Rp) - (1.0f/semimajorAxis));
+ velocity_MIN = sqrt((2.0f / Ra) - (1.0f/semimajorAxis));
   
   Rindex = random(250); //start at a random position on the orbit
     
@@ -65,7 +65,7 @@ void loop()
     }
     goingDown ? Rindex-- : Rindex++; //then we advance the Rindex.
     time = millis(); //and restart the timer for this upcoming phase.
-    velocity = sqrt(2.0f / rVals[Rindex]) - (1.0f/semimajorAxis);
+    velocity = sqrt((2.0f / rVals[Rindex]) - (1.0f/semimajorAxis));
     float speedBar = map((int)1000*velocity,(int)1000*velocity_MIN,(int)1000*velocity_MAX,1,10);
     for (int i = 0; i < 10; i ++){
       if (i<speedBar){

@@ -54,8 +54,8 @@
 semimajorAxis = random(50,100);
 Ra = semimajorAxis*(1+eccentricity);
 Rp = semimajorAxis*(1-eccentricity);
-velocity_MAX = sqrt(2.0f / Rp) - (1.0f/semimajorAxis);
-velocity_MIN = sqrt(2.0f / Ra) - (1.0f/semimajorAxis);
+velocity_MAX = sqrt((2.0f / Rp) - (1.0f/semimajorAxis));
+velocity_MIN = sqrt((2.0f / Ra) - (1.0f/semimajorAxis));
 </code></pre>
         velocity in a stable elliptical orbit can be given by the Vis-viva equation:
         \[v = \sqrt{\mu(\frac{2}{r}-\frac{1}{a})}\\
@@ -65,7 +65,7 @@ velocity_MIN = sqrt(2.0f / Ra) - (1.0f/semimajorAxis);
 
         in order to keep things on the same scale (otherwise some planets might appear not to move at all!) we assume that the \(m_{\text{sun}} \gg m_{\text{planet}} \Rightarrow \mu\) is constant and so we can remove it.
         The planet arduinos then spend an amount of time proportional to the inverse of their speed in each of 250 discrete steps around its orbit. Their speed is mapped to the values 1-10 -- 1 being their minimum velocity, and 10 being their maximum velocity -- and is displayed on their LED displays
-<pre><code>velocity = sqrt(2.0f / rVals[Rindex]) - (1.0f/semimajorAxis);
+<pre><code>velocity = sqrt((2.0f / rVals[Rindex]) - (1.0f/semimajorAxis));
 float speedBar = map((int)1000*velocity,(int)1000*velocity_MIN,(int)1000*velocity_MAX,1,10);
 for (int i = 0; i < 10; i ++){
   if (i&ltspeedBar){
